@@ -8,6 +8,8 @@
 
 import UIKit
 
+let motionKit = MotionKit()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

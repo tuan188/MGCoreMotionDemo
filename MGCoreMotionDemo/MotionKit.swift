@@ -14,17 +14,30 @@ import CoreMotion
 
 //_______________________________________________________________________________________________________________
 // this helps retrieve values from the sensors.
-@objc protocol MotionKitDelegate {
-    @objc optional func retrieveAccelerometerValues (x: Double, y:Double, z:Double, absoluteValue: Double)
-    @objc func retrieveGyroscopeValues     (x: Double, y:Double, z:Double, absoluteValue: Double)
-    @objc func retrieveDeviceMotionObject  (deviceMotion: CMDeviceMotion)
-    @objc func retrieveMagnetometerValues  (x: Double, y:Double, z:Double, absoluteValue: Double)
+protocol MotionKitDelegate {
+    func retrieveAccelerometerValues (x: Double, y:Double, z:Double, absoluteValue: Double)
+    func retrieveGyroscopeValues (x: Double, y:Double, z:Double, absoluteValue: Double)
+    func retrieveDeviceMotionObject (deviceMotion: CMDeviceMotion)
+    func retrieveMagnetometerValues (x: Double, y:Double, z:Double, absoluteValue: Double)
     
-    @objc func getAccelerationValFromDeviceMotion        (x: Double, y:Double, z:Double)
-    @objc func getGravityAccelerationValFromDeviceMotion (x: Double, y:Double, z:Double)
-    @objc func getRotationRateFromDeviceMotion           (x: Double, y:Double, z:Double)
-    @objc func getMagneticFieldFromDeviceMotion          (x: Double, y:Double, z:Double)
-    @objc func getAttitudeFromDeviceMotion               (attitude: CMAttitude)
+    func getAccelerationValFromDeviceMotion (x: Double, y:Double, z:Double)
+    func getGravityAccelerationValFromDeviceMotion (x: Double, y:Double, z:Double)
+    func getRotationRateFromDeviceMotion (x: Double, y:Double, z:Double)
+    func getMagneticFieldFromDeviceMotion (x: Double, y:Double, z:Double)
+    func getAttitudeFromDeviceMotion (attitude: CMAttitude)
+}
+
+extension MotionKitDelegate {
+    func retrieveAccelerometerValues (x: Double, y:Double, z:Double, absoluteValue: Double) {}
+    func retrieveGyroscopeValues (x: Double, y:Double, z:Double, absoluteValue: Double) {}
+    func retrieveDeviceMotionObject (deviceMotion: CMDeviceMotion) {}
+    func retrieveMagnetometerValues (x: Double, y:Double, z:Double, absoluteValue: Double) {}
+    
+    func getAccelerationValFromDeviceMotion (x: Double, y:Double, z:Double) {}
+    func getGravityAccelerationValFromDeviceMotion (x: Double, y:Double, z:Double) {}
+    func getRotationRateFromDeviceMotion (x: Double, y:Double, z:Double) {}
+    func getMagneticFieldFromDeviceMotion (x: Double, y:Double, z:Double) {}
+    func getAttitudeFromDeviceMotion (attitude: CMAttitude) {}
 }
 
 
@@ -70,11 +83,10 @@ class MotionKit {
                 valY = data.acceleration.y
                 valZ = data.acceleration.z
                 
-                if values != nil{
-                    values!(valX,valY,valZ)
-                }
+                values?(valX,valY,valZ)
+                
                 let absoluteVal = sqrt(valX * valX + valY * valY + valZ * valZ)
-                self.delegate?.retrieveAccelerometerValues?(x: valX, y: valY, z: valZ, absoluteValue: absoluteVal)
+                self.delegate?.retrieveAccelerometerValues(x: valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             })
             
         } else {
@@ -109,9 +121,8 @@ class MotionKit {
                 valY = data.rotationRate.y
                 valZ = data.rotationRate.z
                 
-                if values != nil{
-                    values!(valX, valY, valZ)
-                }
+                values?(valX, valY, valZ)
+                
                 let absoluteVal = sqrt(valX * valX + valY * valY + valZ * valZ)
                 self.delegate?.retrieveGyroscopeValues(x: valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             }
@@ -148,9 +159,8 @@ class MotionKit {
                 valY = data.magneticField.y
                 valZ = data.magneticField.z
                 
-                if values != nil{
-                    values!(valX, valY, valZ)
-                }
+                values?(valX, valY, valZ)
+                
                 let absoluteVal = sqrt(valX * valX + valY * valY + valZ * valZ)
                 self.delegate?.retrieveMagnetometerValues(x: valX, y: valY, z: valZ, absoluteValue: absoluteVal)
             }
@@ -179,10 +189,11 @@ class MotionKit {
                 if let isError = error{
                     print("Error: %@", isError)
                 }
-                if let data = data {
-                    values?(data)
-                    self.delegate?.retrieveDeviceMotionObject(deviceMotion: data)
+                guard let data = data else {
+                    return
                 }
+                values?(data)
+                self.delegate?.retrieveDeviceMotionObject(deviceMotion: data)
             }
             
         } else {
@@ -215,9 +226,7 @@ class MotionKit {
                 valY = data.userAcceleration.y
                 valZ = data.userAcceleration.z
                 
-                if values != nil{
-                    values!(valX, valY, valZ)
-                }
+                values?(valX, valY, valZ)
                 
                 self.delegate?.getAccelerationValFromDeviceMotion(x: valX, y: valY, z: valZ)
             }

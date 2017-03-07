@@ -13,6 +13,8 @@
 		BC825D201E6D596900D3BBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC825D1F1E6D596900D3BBE0 /* Assets.xcassets */; };
 		BC825D231E6D596900D3BBE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC825D211E6D596900D3BBE0 /* LaunchScreen.storyboard */; };
 		BC825D2B1E6D5B0E00D3BBE0 /* MotionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC825D2A1E6D5B0E00D3BBE0 /* MotionKit.swift */; };
+		BC825D2D1E6E543F00D3BBE0 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC825D2C1E6E543F00D3BBE0 /* DoubleExtension.swift */; };
+		BC825D2F1E6E5CE600D3BBE0 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC825D2E1E6E5CE600D3BBE0 /* MotionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		BC825D221E6D596900D3BBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC825D241E6D596900D3BBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC825D2A1E6D5B0E00D3BBE0 /* MotionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionKit.swift; sourceTree = "<group>"; };
+		BC825D2C1E6E543F00D3BBE0 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		BC825D2E1E6E5CE600D3BBE0 /* MotionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				BC825D211E6D596900D3BBE0 /* LaunchScreen.storyboard */,
 				BC825D241E6D596900D3BBE0 /* Info.plist */,
 				BC825D2A1E6D5B0E00D3BBE0 /* MotionKit.swift */,
+				BC825D2C1E6E543F00D3BBE0 /* DoubleExtension.swift */,
+				BC825D2E1E6E5CE600D3BBE0 /* MotionService.swift */,
 			);
 			path = MGCoreMotionDemo;
 			sourceTree = "<group>";
@@ -140,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC825D2D1E6E543F00D3BBE0 /* DoubleExtension.swift in Sources */,
 				BC825D1B1E6D596900D3BBE0 /* ViewController.swift in Sources */,
+				BC825D2F1E6E5CE600D3BBE0 /* MotionService.swift in Sources */,
 				BC825D191E6D596900D3BBE0 /* AppDelegate.swift in Sources */,
 				BC825D2B1E6D5B0E00D3BBE0 /* MotionKit.swift in Sources */,
 			);
